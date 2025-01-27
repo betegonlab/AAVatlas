@@ -24,7 +24,7 @@ with col1:
 
 st.subheader(serotype)
 
-DATA_PATH = "K912_dilution_curve_umap_cell_type_aav_binary.csv"
+DATA_PATH = serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 
 @st.cache_data
 def load_data(data_path):
