@@ -65,7 +65,7 @@ def plot_infectivity(serotype_name):
 	dfs = {}
 	fig2 = go.Figure()
 	for i in range(12,6,-1):
-	    dfs['1E'+str(i)] = pd.read_csv('K912_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
+	    dfs['1E'+str(i)] = pd.read_csv(serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
 	    fig2.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
 
 	fig2.update_layout(
@@ -101,14 +101,14 @@ with tab_qc:
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		st.subheader("AAV Quality Control:")
-		qc_data = load_data("K912_QC.csv")
+		qc_data = load_data(serotype+"_QC.csv")
 		qc_data.set_index('Test', inplace=True)
 		st.table(qc_data)
 
 with tab_imaging:
 	st.write("Imaging was performed on a Heidelberg Spectralis OCT imaging system, under sedation, following dilation with tropicamide.")
 	st.subheader("Pre-OP OCT imaging")
-	st.image("K912_OCT_pre.png", width=600)
+	st.image(serotype+"_OCT_pre.png", width=600)
 	st.subheader("30 days post-injection OCT imaging")
-	st.image("K912_OCT_post.png", width=600)
+	st.image(serotype+"_OCT_post.png", width=600)
 
