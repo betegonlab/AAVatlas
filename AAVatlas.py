@@ -80,7 +80,7 @@ def plot_infectivity(serotype_name):
 	fig2.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
 	fig2.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
 	fig2.update_traces(mode='markers+lines')
-	fig2.update_traces(hovertemplate="<br>".join(["Cells sampled: %{x:,.2r}","Cells infected: %{y}", "% infected: %{y/x}"]))
+	fig2.update_traces(hovertemplate="<br>".join(["Cells sampled: %{x:,.2r}","Cells infected: %{y}"]))
 	fig2.update_traces(marker_size=8)
 
 	return st.plotly_chart(fig2, theme='streamlit', use_container_width=False)
