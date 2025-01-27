@@ -70,8 +70,8 @@ def plot_infectivity(serotype_name):
 
 	fig2.update_layout(
 	    title=serotype + " infectivity",
-	    xaxis_title="# cells sampled",
-	    yaxis_title="X# cells infected",
+	    xaxis_title="Number of cells sampled",
+	    yaxis_title="Number of cells infected",
 	    legend_title="AAV titer",
 	    width=1000,
 	    height=650
