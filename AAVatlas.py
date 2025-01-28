@@ -24,12 +24,18 @@ with col1:
 
 st.subheader(serotype)
 
-DATA_PATH = serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 
 @st.cache_data
 def load_data(data_path):
     data = pd.read_csv(data_path)
     return data
+
+@st.cache_data
+def load_data_umap(data_path):
+    umap_data = pd.read_csv(data_path)
+    infected_data = pd.DataFrame()
+    umap_data.drop('full_cell_id', inplace=True, axis=1)
+    return umap_data
 
 @st.cache_resource
 def plot_umap(serotype_name):
@@ -40,14 +46,15 @@ def plot_umap(serotype_name):
 		color='cell_type',
 		width=1200,
 		height=700,
+		color_discrete_map={"Cells infected": "black"},
 		hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
 	)
-	fig.update_traces(marker_size=2)
+	fig.update_traces(marker_size=3)
 	fig.update_traces(mode='markers')
 
 	#fig.add_trace(umap_data['umap1'], umap_data['umap2'], umap_data['cells_with_BC2'].bool())
 
-	fig.update_layout(title=serotype + ' UMAP')
+	fig.update_layout(title=serotype_name + ' UMAP')
 	fig.update_layout(legend_title='Cell type')
 	fig.update_layout(legend_itemsizing='constant')
 	fig.update_layout(
@@ -65,7 +72,7 @@ def plot_infectivity(serotype_name):
 	dfs = {}
 	fig2 = go.Figure()
 	for i in range(12,6,-1):
-	    dfs['1E'+str(i)] = pd.read_csv(serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
+	    dfs['1E'+str(i)] = pd.read_csv(serotype_name+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
 	    fig2.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
 
 	fig2.update_layout(
@@ -88,8 +95,8 @@ def plot_infectivity(serotype_name):
 tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP imaging", "Raw data"])
 
 with tab_umap:
-	umap_data = load_data(DATA_PATH)
-	umap_data.drop('full_cell_id', inplace=True, axis=1)
+	umap_file = 'proc_'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
+	umap_data = load_data_umap(umap_file)
 	plot_umap(serotype)
 
 with tab_infec:
