@@ -106,9 +106,9 @@ with tab_infec:
 	plot_infectivity(serotype)
 
 with tab_qc:
-	pdf_viewer(serotype+"_qc.pdf", height=800, width=800)
+	pdf_viewer(serotype+"_qc.pdf", height=800, width=1000)
 
 with tab_imaging:
-	pdf_viewer(serotype+"_imaging.pdf", height=800, width=800)
+	pdf_viewer(serotype+"_imaging.pdf", height=800, width=1000)
 
 
