@@ -106,7 +106,7 @@ with tab_infec:
 	plot_infectivity(serotype)
 
 with tab_qc:
-	with open(erotype+"qc.pdf", 'rb') as f_qc:
+	with open(serotype+"qc.pdf", 'rb') as f_qc:
 		st.download_button(
 	    		label="Download QC PDF",
 	    		file_name=serotype+"_qc.pdf",
@@ -117,7 +117,7 @@ with tab_qc:
 	pdf_viewer(serotype+"_qc.pdf") #, height=800, width=1000)
 
 with tab_imaging:
-	with open(erotype+"_imaging.pdf", 'rb') as f_img:
+	with open(serotype+"_imaging.pdf", 'rb') as f_img:
 		st.download_button(
 	    		label="Download imaging PDF",
 	    		file_name=serotype+"_imaging.pdf",
