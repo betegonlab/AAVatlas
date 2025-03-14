@@ -108,7 +108,6 @@ with tab_infec:
 with tab_qc:
 	st.download_button(
     		label="Download QC PDF",
-    		data=pdf,
     		file_name=serotype+"_qc.pdf",
     		mime="application/pdf",
     		icon=":material/download:",
@@ -118,7 +117,6 @@ with tab_qc:
 with tab_imaging:
 	st.download_button(
     		label="Download imaging PDF",
-    		data=pdf,
     		file_name=serotype+"_imaging.pdf",
     		mime="application/pdf",
     		icon=":material/download:",
