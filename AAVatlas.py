@@ -106,13 +106,9 @@ with tab_infec:
 	plot_infectivity(serotype)
 
 with tab_qc:
-	pdf_viewer(serotype+"_qc.pdf", height=800)
+	pdf_viewer(serotype+"_qc.pdf", height=800, width=800)
 
 with tab_imaging:
-	st.write("Imaging was performed on a Heidelberg Spectralis OCT imaging system, under sedation, following dilation with tropicamide.")
-	pdf_viewer(serotype+"_imaging.pdf", height=800)
-	st.subheader("Pre-OP OCT imaging")
-	st.image(serotype+"_OCT_pre.png", width=600)
-	st.subheader("30 days post-injection OCT imaging")
-	st.image(serotype+"_OCT_post.png", width=600)
+	pdf_viewer(serotype+"_imaging.pdf", height=800, width=800)
+
 
