@@ -4,3 +4,4 @@ numpy
 plotly
 streamlit_option_menu
 kaleido
+streamlit-pdf-viewer
