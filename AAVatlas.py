@@ -115,7 +115,7 @@ with tab_qc:
 
 with tab_imaging:
 	st.write("Imaging was performed on a Heidelberg Spectralis OCT imaging system, under sedation, following dilation with tropicamide.")
-	pdf_viewer(serotype+"_imaging.pdf", width=500, height=500)
+	pdf_viewer(serotype+"_imaging.pdf", width=800, height=1000)
 	st.subheader("Pre-OP OCT imaging")
 	st.image(serotype+"_OCT_pre.png", width=600)
 	st.subheader("30 days post-injection OCT imaging")
