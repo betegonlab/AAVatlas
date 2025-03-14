@@ -134,7 +134,7 @@ if selected == "By cell type":
 	with col1:
 		celltype_selected = st.selectbox(
 		    "Select a cell type:",
-		    ("Rod","Cone")
+		    ("Rods","Cones","RGCs")
 		)
 		celltype = celltype_selected
 	
