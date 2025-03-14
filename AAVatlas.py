@@ -106,12 +106,7 @@ with tab_infec:
 	plot_infectivity(serotype)
 
 with tab_qc:
-	col1, col2, col3 = st.columns(3)
-	with col1:
-		st.subheader("AAV Quality Control:")
-		qc_data = load_data(serotype+"_QC.csv")
-		qc_data.set_index('Test', inplace=True)
-		st.table(qc_data)
+	pdf_viewer(serotype+"_qc.pdf", height=800)
 
 with tab_imaging:
 	st.write("Imaging was performed on a Heidelberg Spectralis OCT imaging system, under sedation, following dilation with tropicamide.")
