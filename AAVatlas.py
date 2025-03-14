@@ -133,8 +133,8 @@ if selected == "By cell type":
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		celltype_selected = st.selectbox(
-		    "Select an AAV serotype:",
-		    ("K912","AAV2")
+		    "Select a cell type:",
+		    ("Rod","Cone")
 		)
 		celltype = celltype_selected
 	
