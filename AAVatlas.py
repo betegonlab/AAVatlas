@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+from streamlit_pdf_viewer import pdf_viewer
 
 st.set_page_config(layout="wide")
 
@@ -114,6 +115,7 @@ with tab_qc:
 
 with tab_imaging:
 	st.write("Imaging was performed on a Heidelberg Spectralis OCT imaging system, under sedation, following dilation with tropicamide.")
+	pdf_viewer(serotype+"_imaging.pdf")
 	st.subheader("Pre-OP OCT imaging")
 	st.image(serotype+"_OCT_pre.png", width=600)
 	st.subheader("30 days post-injection OCT imaging")
