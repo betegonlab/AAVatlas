@@ -15,6 +15,7 @@ from streamlit_option_menu import option_menu
 with st.sidebar:
     selected = option_menu("Pittsburgh AAV atlas", ["By serotype", 'By cell type'], 
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
+
 if selected == "By serotype":
 	col1, col2, col3 = st.columns(3)
 	with col1:
