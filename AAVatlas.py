@@ -20,7 +20,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
 	serotype_selected = st.selectbox(
 	    "Select an AAV serotype:",
-	    ("K912",)
+	    ("K912","AAV2")
 	)
 	serotype = serotype_selected
 
