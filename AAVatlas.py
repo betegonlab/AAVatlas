@@ -128,4 +128,13 @@ if selected == "By serotype":
 			)
 		pdf_viewer(serotype+"_imaging.pdf") #, height=800, width=1000)
 	
+if selected == "By cell type":
+	col1, col2, col3 = st.columns(3)
+	with col1:
+		celltype_selected = st.selectbox(
+		    "Select an AAV serotype:",
+		    ("K912","AAV2")
+		)
+		celltype = celltype_selected
 	
+	st.subheader(celltype_selected)
