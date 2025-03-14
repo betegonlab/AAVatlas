@@ -108,7 +108,7 @@ with tab_infec:
 with tab_qc:
 	with open(serotype+"_qc.pdf", 'rb') as f_qc:
 		st.download_button(
-	    		label="Download QC PDF",
+	    		label="Download "+serotype+" QC PDF",
 	    		file_name=serotype+"_qc.pdf",
 			data=f_qc,
 	    		mime="application/pdf",
@@ -119,7 +119,7 @@ with tab_qc:
 with tab_imaging:
 	with open(serotype+"_imaging.pdf", 'rb') as f_img:
 		st.download_button(
-	    		label="Download imaging PDF",
+	    		label="Download "+serotype+" imaging PDF",
 	    		file_name=serotype+"_imaging.pdf",
 			data=f_img,
 	    		mime="application/pdf",
