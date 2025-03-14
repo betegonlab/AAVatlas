@@ -101,6 +101,7 @@ if selected == "By serotype":
 		umap_file = 'proc_'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 		umap_data = load_data_umap(umap_file)
 		plot_umap(serotype)
+		st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
 	
 	with tab_infec:
 		import plotly.graph_objects as go
