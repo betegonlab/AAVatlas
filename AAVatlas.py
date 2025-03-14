@@ -18,10 +18,11 @@ with st.sidebar:
 
 col1, col2, col3 = st.columns(3)
 with col1:
-	add_selectbox = st.selectbox(
+	serotype_selected = st.selectbox(
 	    "Select an AAV serotype:",
 	    ("K912",)
 	)
+	serotype = serotype_selected
 
 st.subheader(serotype)
 
