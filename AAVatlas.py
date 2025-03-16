@@ -41,7 +41,7 @@ if selected == "By serotype":
 	    return umap_data
 	
 	@st.cache_resource
-	def plot_umap(serotype_name):
+	def plot_umap(serotype_name, umap_data):
 		fig = px.scatter(
 			umap_data,
 			x='umap1',
@@ -49,7 +49,14 @@ if selected == "By serotype":
 			color='cell_type',
 			width=1200,
 			height=700,
-			color_discrete_map={"Cells infected": "black"},
+			color_discrete_map={
+				"Cells infected at AAV titer 10^7": "black",
+				"Cells infected at AAV titer 10^8": "black",
+				"Cells infected at AAV titer 10^9": "black",
+				"Cells infected at AAV titer 10^10": "black",
+				"Cells infected at AAV titer 10^11": "black",
+				"Cells infected at AAV titer 10^12": "black"
+			},
 			hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
 		)
 		fig.update_traces(marker_size=3)
@@ -98,7 +105,7 @@ if selected == "By serotype":
 	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP imaging", "Raw data"])
 	
 	with tab_umap:
-		umap_file = 'proc_'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
+		umap_file = 'umap'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 		umap_data = load_data_umap(umap_file)
 		plot_umap(serotype)
 		st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
