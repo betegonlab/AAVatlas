@@ -105,7 +105,7 @@ if selected == "By serotype":
 	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP imaging", "Raw data"])
 	
 	with tab_umap:
-		umap_file = 'umap'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
+		umap_file = 'umap_'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 		umap_data = load_data_umap(umap_file)
 		plot_umap(serotype)
 		st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
