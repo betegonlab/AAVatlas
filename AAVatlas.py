@@ -35,9 +35,9 @@ if selected == "By serotype":
 	
 	@st.cache_data
 	def load_data_umap(data_path):
-	    umap_data = pd.read_csv(data_path)
-	    infected_data = pd.DataFrame()
-	    return umap_data
+		umap_data = pd.read_csv(data_path)
+		print(umap_data.header())
+		return umap_data
 	
 	@st.cache_resource
 	def plot_umap(serotype_name, umap_data):
