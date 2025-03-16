@@ -106,7 +106,7 @@ if selected == "By serotype":
 	with tab_umap:
 		umap_file = 'umap_'+serotype+"_dilution_curve_umap_cell_type_aav_binary.csv"
 		umap_data = load_data_umap(umap_file)
-		plot_umap(serotype)
+		plot_umap(serotype, umap_data)
 		st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
 		
 	
