@@ -36,7 +36,7 @@ if selected == "By serotype":
 	@st.cache_data
 	def load_data_umap(data_path):
 		umap_data = pd.read_csv(data_path)
-		print(umap_data.header())
+		print(umap_data.head())
 		return umap_data
 	
 	@st.cache_resource
