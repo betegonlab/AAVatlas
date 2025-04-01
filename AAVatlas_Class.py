@@ -79,7 +79,7 @@ class AAVatlas():
 	
         return infectivityFig
     
-    @st.cache_resource
+    @st.cache_data
     def pdfButton(_self, serotype, fileName):
         try:
             f_qc = open(_self.dataPath+serotype+"/"+fileName, 'rb')
