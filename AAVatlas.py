@@ -53,26 +53,31 @@ if selected == "By serotype":
 			st.text("No data found")
 	
 	with tab_qc:
-		button = atlas.pdfButton(serotype, serotype+"_qc.pdf")
-		if button != None:
-			button
-		else:
-			st.text("No data found")
 		try:
+			f_qc = open(serotype+"_qc.pdf", 'rb')
+			st.download_button(
+				label="Download "+serotype+" QC PDF",
+				file_name=atlas.dataPath+serotype+"/"+serotype+"_qc.pdf",
+				data=f_qc,
+				mime="application/pdf",
+				icon=":material/download:",
+			)
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf") #, height=800, width=1000)\
 		except:
 			st.text("No data found")
 	
 	with tab_imaging:
 		try:
-			f_img = open(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", 'rb')
+			f_img = open(serotype+"_imaging.pdf", 'rb')
+			@st.cache_resource
 			st.download_button(
 		    	label="Download "+serotype+" imaging PDF",
-		    	file_name=serotype+"_imaging.pdf",
+		    	file_name=atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf",
 				data=f_img,
 		    	mime="application/pdf",
 		    	icon=":material/download:",
 			)
+			@st.cache_resource
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf") #, height=800, width=1000)
 		except:
 			st.text("No data found")
