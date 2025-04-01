@@ -2,12 +2,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 class AAVatlas():
 
     def __init__(self):
         self.dataPath = 'data/'
-        self.serotypes = ['K912', 'AAV2', 'AAV8']
+        root, dirs, files = os.walk("/path/to/your/dir").next()
+        self.serotypes = dirs
 
     @st.cache_resource
     def umapPlot(_self, serotype):
