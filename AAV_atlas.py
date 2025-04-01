@@ -9,7 +9,6 @@ st.set_page_config(layout="wide")
 
 serotype = "K912"
 
-
 atlas = aa.AAVatlas()
 
 from streamlit_option_menu import option_menu
