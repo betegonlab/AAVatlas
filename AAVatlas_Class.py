@@ -8,8 +8,7 @@ class AAVatlas():
 
     def __init__(self):
         self.dataPath = 'data/'
-        root, dirs, files = os.walk("/path/to/your/dir").next()
-        self.serotypes = dirs
+        self.serotypes = files_dir = [f for f in os.listdir(self.dataPath) if os.path.isdir(os.path.join(self.dataPath, f))]
 
     @st.cache_resource
     def umapPlot(_self, serotype):
