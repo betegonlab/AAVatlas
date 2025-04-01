@@ -7,7 +7,7 @@ class AAVatlas():
 
     def __init__(self):
         self.dataPath = 'data/'
-        self.serotypes = ['AAV2', 'AAV8', 'K912']
+        self.serotypes = ['K912', 'AAV2', 'AAV8']
 
     @st.cache_resource
     def umapPlot(_self, serotype):
