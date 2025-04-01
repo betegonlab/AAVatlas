@@ -53,7 +53,7 @@ if selected == "By serotype":
 			st.text("No data found")
 	
 	with tab_qc:
-		button = atlas.pdfButton(_self, fileName)
+		button = atlas.pdfButton(serotype+"_qc.pdf")
 		if button != None:
 			button
 		else:
