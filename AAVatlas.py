@@ -69,7 +69,6 @@ if selected == "By serotype":
 	with tab_imaging:
 		try:
 			f_img = open(serotype+"_imaging.pdf", 'rb')
-			@st.cache_resource
 			st.download_button(
 		    	label="Download "+serotype+" imaging PDF",
 		    	file_name=atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf",
@@ -77,7 +76,6 @@ if selected == "By serotype":
 		    	mime="application/pdf",
 		    	icon=":material/download:",
 			)
-			@st.cache_resource
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf") #, height=800, width=1000)
 		except:
 			st.text("No data found")
