@@ -54,10 +54,10 @@ if selected == "By serotype":
 	
 	with tab_qc:
 		try:
-			f_qc = open(serotype+"_qc.pdf", 'rb')
+			f_qc = open(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", 'rb')
 			st.download_button(
 				label="Download "+serotype+" QC PDF",
-				file_name=atlas.dataPath+serotype+"/"+serotype+"_qc.pdf",
+				file_name=serotype+"_qc.pdf",
 				data=f_qc,
 				mime="application/pdf",
 				icon=":material/download:",
@@ -68,10 +68,10 @@ if selected == "By serotype":
 	
 	with tab_imaging:
 		try:
-			f_img = open(serotype+"_imaging.pdf", 'rb')
+			f_img = open(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", 'rb')
 			st.download_button(
 		    	label="Download "+serotype+" imaging PDF",
-		    	file_name=atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf",
+		    	file_name=serotype+"_imaging.pdf",
 				data=f_img,
 		    	mime="application/pdf",
 		    	icon=":material/download:",
