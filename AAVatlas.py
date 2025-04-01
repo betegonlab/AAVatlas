@@ -1,80 +1,92 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as px
-import plotly.graph_objects as go
+from streamlit_pdf_viewer import pdf_viewer
+import AAVatlas_Class as aa
 
-class AAVatlas():
+st.set_page_config(layout="wide")
 
-    def __init__(self):
-        self.dataPath = 'data/'
-        self.serotypes = ['AAV2', 'AAV8', 'K912']
+serotype = "K912"
 
-    @st.cache_resource
-    def umapPlot(_self, serotype):
-        try:
-            umap_data = pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_umap.csv")
-        except:
-            return None
-        
-        umapFig = px.scatter(
-			umap_data,
-			x='umap1',
-			y='umap2',
-			color='cell_type',
-			width=1200,
-			height=700,
-			color_discrete_map={
-				"Cells infected at AAV titer 10^7": "black",
-				"Cells infected at AAV titer 10^8": "black",
-				"Cells infected at AAV titer 10^9": "black",
-				"Cells infected at AAV titer 10^10": "black",
-				"Cells infected at AAV titer 10^11": "black",
-				"Cells infected at AAV titer 10^12": "black"
-			},
-			hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
+atlas = aa.AAVatlas()
+
+from streamlit_option_menu import option_menu
+
+with st.sidebar:
+    selected = option_menu("Pittsburgh AAV atlas", ["By serotype", 'By cell type'], 
+        icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
+
+if selected == "By serotype":
+	col1, col2, col3 = st.columns(3)
+	with col1:
+		serotype_selected = st.selectbox(
+		    "Select an AAV serotype:",
+		    atlas.serotypes
 		)
-        umapFig.update_traces(marker_size=3)
-        umapFig.update_traces(mode='markers')
+		serotype = serotype_selected
 	
-		#umapFig.add_trace(umap_data['umap1'], umap_data['umap2'], umap_data['cells_with_BC2'].bool())
+	st.subheader(serotype)
 	
-        umapFig.update_layout(title=serotype + ' UMAP')
-        umapFig.update_layout(legend_title='Cell type')
-        umapFig.update_layout(legend_itemsizing='constant')
-        umapFig.update_layout(
-		    xaxis_range=umapFig.full_figure_for_development(warn=False).layout.xaxis.range,
-		    yaxis_range=umapFig.full_figure_for_development(warn=False).layout.yaxis.range,
-		)
-        umapFig.update_layout(plot_bgcolor='#ffffff')
-        umapFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-        umapFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-		
-        return umapFig
-        
-    @st.cache_resource
-    def infectivityPlot(_self, serotype):        
-        dfs = {}
-        infectivityFig = go.Figure()
-        try:
-            for i in range(12,6,-1):
-                dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
-                infectivityFig.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
-        except:
-            return None
+	
+	@st.cache_data
+	def load_data(data_path):
+		data = pd.read_csv(data_path)
+		return data
+	
+	
+	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP imaging", "Raw data"])
+	
+	with tab_umap:
+		umapPlot = atlas.umapPlot(serotype)
+		if umapPlot != None:
+			st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
+			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
+		else:
+			st.text("No data found")
 
-        infectivityFig.update_layout(
-		    title=serotype + " infectivity",
-		    xaxis_title="Number of cells sampled",
-		    yaxis_title="Number of cells infected",
-		    legend_title="AAV titer",
-		    width=1000,
-		    height=650
-		)
-        infectivityFig.update_layout(plot_bgcolor='#ffffff')
-        infectivityFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-        infectivityFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-        infectivityFig.update_traces(mode='markers+lines')
-        infectivityFig.update_traces(hovertemplate="<br>".join(["Cells sampled: %{x:,.2r}","Cells infected: %{y}"]))
-        infectivityFig.update_traces(marker_size=8)
+	with tab_infec:
+		infectivityPlot = atlas.infectivityPlot(serotype)
+		if infectivityPlot != None:
+			st.plotly_chart(infectivityPlot, theme='streamlit', use_container_width=False)
+		else:
+			st.text("No data found")
 	
-        return infectivityFig
+	with tab_qc:
+		try:
+			f_qc = open(serotype+"_qc.pdf", 'rb')
+			st.download_button(
+					label="Download "+serotype+" QC PDF",
+					file_name=serotype+"_qc.pdf",
+				data=f_qc,
+					mime="application/pdf",
+					icon=":material/download:",
+			)
+			pdf_viewer(serotype+"_qc.pdf") #, height=800, width=1000)\
+		except:
+			st.text("No data found")
+	
+	with tab_imaging:
+		try:
+			f_img = open(serotype+"_imaging.pdf", 'rb')
+			st.download_button(
+		    		label="Download "+serotype+" imaging PDF",
+		    		file_name=serotype+"_imaging.pdf",
+				data=f_img,
+		    		mime="application/pdf",
+		    		icon=":material/download:",
+			)
+			pdf_viewer(serotype+"_imaging.pdf") #, height=800, width=1000)
+		except:
+			st.text("No data found")
+	
+if selected == "By cell type":
+	col1, col2, col3 = st.columns(3)
+	with col1:
+		celltype_selected = st.selectbox(
+		    "Select a cell type:",
+		    ("Rods","Cones","RGCs")
+		)
+		celltype = celltype_selected
+	
+	st.subheader(celltype_selected)
