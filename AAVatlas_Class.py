@@ -78,3 +78,18 @@ class AAVatlas():
         infectivityFig.update_traces(marker_size=8)
 	
         return infectivityFig
+    
+    @st.cache_resource
+    def pdfButton(_self, fileName):
+        try:
+            f_qc = open(_self.dataPath+serotype+"/"+fileName, 'rb')
+            button = st.download_button(
+                label="Download PDF",
+                file_name=fileName,
+                data=f_qc,
+                mime="application/pdf",
+                icon=":material/download:",
+            )
+            return button
+        except:
+            return None
