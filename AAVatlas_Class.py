@@ -49,8 +49,7 @@ class AAVatlas():
             text_auto='.2f',
             barmode='group',
             height=600,
-            width=1200,
-            barnorm='percent')
+            width=1200)
         celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName)
         celltypeFig.update_layout(legend_title='AAV titer')
         celltypeFig.update_layout(legend_itemsizing='constant')
