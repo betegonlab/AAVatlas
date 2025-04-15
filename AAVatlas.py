@@ -13,8 +13,21 @@ atlas = aa.AAVatlas()
 
 from streamlit_option_menu import option_menu
 
+st.markdown(
+    """
+    <style>
+        section[data-testid="stSidebar"] {
+            width: 200px !important; # Set the width to your desired value
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 with st.sidebar:
-    selected = option_menu("Pittsburgh AAV atlas", ["By serotype", 'By cell type'], 
+    st.sidebar.header("Pittsburgh AAV atlas")
+    st.image("PAA_Logo.png")
+    selected = option_menu("", ["By serotype", 'By cell type'], 
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
 if selected == "By serotype":
@@ -35,9 +48,11 @@ if selected == "By serotype":
 		return data
 	
 	
-	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP imaging", "Raw data"])
-	
+	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP information", "Raw data"])
+
+# umap tab	
 	with tab_umap:
+
 		umapPlot = atlas.umapPlot(serotype)
 		if umapPlot != None:
 			st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
@@ -45,48 +60,74 @@ if selected == "By serotype":
 		else:
 			st.text("No data found")
 
+		cellsPlot = atlas.cellsPlot(serotype)
+		if cellsPlot != None:
+			st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
+			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
+		else:
+			st.text("No data found")
+
+# Infectivity tab
 	with tab_infec:
+
 		infectivityPlot = atlas.infectivityPlot(serotype)
 		if infectivityPlot != None:
 			st.plotly_chart(infectivityPlot, theme='streamlit', use_container_width=False)
 		else:
 			st.text("No data found")
-	
+
+# AAV QC tab	
 	with tab_qc:
+
 		try:
-			f_qc = open(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", 'rb')
+			pdf = atlas.loadPDF(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf")
 			st.download_button(
-				label="Download "+serotype+" QC PDF",
-				file_name=serotype+"_qc.pdf",
-				data=f_qc,
-				mime="application/pdf",
-				icon=":material/download:",
+	    		label="Download "+serotype+" QC pdf",
+	    		file_name=serotype+"_qc.pdf",
+				data=pdf,
+	    		mime="application/pdf",
+	    		icon=":material/download:",
 			)
-			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf") #, height=800, width=1000)\
+			#st.link_button("Download "+serotype+" QC pdf", atlas.dataPath+serotype+"/"+serotype+"_qc.pdf")
+			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf") #, height=800, width=1000)
+			
 		except:
 			st.text("No data found")
 	
+
+# NHP info tab
 	with tab_imaging:
+
 		try:
-			f_img = open(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", 'rb')
+			pdf = atlas.loadPDF(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf")
 			st.download_button(
-		    	label="Download "+serotype+" imaging PDF",
-		    	file_name=serotype+"_imaging.pdf",
-				data=f_img,
-		    	mime="application/pdf",
-		    	icon=":material/download:",
+	    		label="Download "+serotype+" imaging pdf",
+	    		file_name=serotype+"_imaging.pdf",
+				data=pdf,
+	    		mime="application/pdf",
+	    		icon=":material/download:",
 			)
+			#st.link_button("Download "+serotype+" imaging pdf", atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf")
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf") #, height=800, width=1000)
+		
 		except:
 			st.text("No data found")
+		
 	
 if selected == "By cell type":
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		celltype_selected = st.selectbox(
 		    "Select a cell type:",
-		    ("Rods","Cones","RGCs")
+		    ("Rod","Cone","Retinal Ganglion Cell","Horizontal Cell","Microglia","Muller Glia","Off-Bipolar","On-Bipolar", "Retinal pigment epithelium", "Amacrine Cell")
 		)
 		celltype = celltype_selected
 	
 	st.subheader(celltype_selected)
+
+	celltypePlot = atlas.celltypePlot(celltype_selected)
+	if celltypePlot != None:
+		st.plotly_chart(celltypePlot, theme='streamlit', use_container_width=False)
+	else:
+		st.text("No data found")
+
