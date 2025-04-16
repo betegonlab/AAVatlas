@@ -30,7 +30,7 @@ with st.sidebar:
     selected = option_menu("", ["By serotype", 'By cell type'], 
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
     st.text("Funded by:")
-    st.image("FNIH_Logo.png")
+    st.image("FNIH_logo.svg")
 
 if selected == "By serotype":
 	col1, col2, col3 = st.columns(3)
