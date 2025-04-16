@@ -63,8 +63,8 @@ if selected == "By serotype":
 
 		umapPlot = atlas.umapPlot(serotype)
 		if umapPlot != None:
+			st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
 			st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
-			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
 		else:
 			st.text("No data found")
 
@@ -120,6 +120,11 @@ if selected == "By serotype":
 		
 		except:
 			st.text("No data found")
+
+# Data tab
+	with tab_raw:
+		st.text("Single-cell sequencing data is available at NCBI GEO:")
+		st.link_button("Access raw data", "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEXXXXXX")
 		
 	
 if selected == "By cell type":
