@@ -43,8 +43,8 @@ with st.sidebar:
     st.text(' ')
     st.text(' ')
     st.text('Developed by:')
-    st.page_link('https://www.byrnelab.science/', label='Byrne lab')
-    st.page_link('https://www.betegonlab.science/', label='Betegon lab')
+    st.page_link('https://www.byrnelab.science/', label='The :blue[Byrne lab]')
+    st.page_link('https://www.betegonlab.science/', label='The :blue[Betegon lab]')
     st.image("Pitt_logo.png")
 
 if selected == "By serotype":
