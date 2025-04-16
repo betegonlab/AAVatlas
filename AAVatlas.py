@@ -34,7 +34,7 @@ with st.sidebar:
     st.text(' ')
     st.text(' ')
     st.text(' ')
-	st.text(' ')
+    st.text(' ')
     st.text("Funded by:")
     st.image("FNIH_logo.svg")
 
@@ -97,7 +97,7 @@ if selected == "By serotype":
 	    		icon=":material/download:",
 			)
 			#st.link_button("Download "+serotype+" QC pdf", atlas.dataPath+serotype+"/"+serotype+"_qc.pdf")
-			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", height=800, width=1000)
+			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", width=1200)
 			
 		except:
 			st.text("No data found")
@@ -116,7 +116,7 @@ if selected == "By serotype":
 	    		icon=":material/download:",
 			)
 			#st.link_button("Download "+serotype+" imaging pdf", atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf")
-			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf") #, height=800, width=1000)
+			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", width=1200) #, height=800, width=1000)
 		
 		except:
 			st.text("No data found")

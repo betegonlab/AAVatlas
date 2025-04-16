@@ -21,7 +21,6 @@ class AAVatlas():
             barmode='group',
             height=600,
             width=1200,
-            text_auto='.2f',
             log_y=True)
         cellsFig.update_layout(title=serotype + ' cell type infectivity')
         cellsFig.update_layout(legend_title='AAV titer')
