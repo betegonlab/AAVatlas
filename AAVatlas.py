@@ -29,6 +29,8 @@ with st.sidebar:
     st.image("PAA_Logo.png")
     selected = option_menu("", ["By serotype", 'By cell type'], 
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
+
+    st.markdown('##')
     st.text("Funded by:")
     st.image("FNIH_logo.svg")
 
