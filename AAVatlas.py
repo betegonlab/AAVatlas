@@ -29,6 +29,8 @@ with st.sidebar:
     st.image("PAA_Logo.png")
     selected = option_menu("", ["By serotype", 'By cell type'], 
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
+    st.text("Funded by:")
+    st.image("FNIH_Logo.png")
 
 if selected == "By serotype":
 	col1, col2, col3 = st.columns(3)
@@ -89,7 +91,7 @@ if selected == "By serotype":
 	    		icon=":material/download:",
 			)
 			#st.link_button("Download "+serotype+" QC pdf", atlas.dataPath+serotype+"/"+serotype+"_qc.pdf")
-			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", width=900) #, height=800, width=1000)
+			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", height=800, width=1000)
 			
 		except:
 			st.text("No data found")
