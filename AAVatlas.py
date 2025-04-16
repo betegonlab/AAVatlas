@@ -17,7 +17,7 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 200px !important; # Set the width to your desired value
+            width: 250px !important; # Set the width to your desired value
         }
     </style>
     """,
@@ -37,12 +37,22 @@ with st.sidebar:
     st.text(' ')
     st.text("Funded by:")
     st.image("FNIH_logo.svg")
+    st.text(' ')
+    st.text(' ')
+    st.text(' ')
+    st.text(' ')
+    st.text(' ')
+    st.text('Developed by:')
+    st.page_link('https://www.byrnelab.science/', label='Byrne lab')
+    st.page_link('https://www.betegonlab.science/', label='Betegon lab')
+    st.image("Pitt_logo.png")
 
 if selected == "By serotype":
+	st.subheader("AAV serotype")
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		serotype_selected = st.selectbox(
-		    "Select an AAV serotype:",
+		    "",
 		    atlas.serotypes
 		)
 		serotype = serotype_selected
@@ -128,10 +138,11 @@ if selected == "By serotype":
 		
 	
 if selected == "By cell type":
+	st.subheader("Cell type")
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		celltype_selected = st.selectbox(
-		    "Select a cell type:",
+		    '',
 		    ("Rod","Cone","Retinal Ganglion Cell","Horizontal Cell","Microglia","Muller Glia","Off-Bipolar","On-Bipolar", "Retinal pigment epithelium", "Amacrine Cell")
 		)
 		celltype = celltype_selected
