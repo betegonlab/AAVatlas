@@ -31,17 +31,11 @@ with st.sidebar:
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
     st.text(' ')
-    st.text(' ')
-    st.text(' ')
-    st.text(' ')
-    st.text(' ')
+
     st.text("Funded by:")
     st.image("FNIH_logo.svg")
     st.text(' ')
-    st.text(' ')
-    st.text(' ')
-    st.text(' ')
-    st.text(' ')
+
     st.text('Developed by:')
     st.page_link('https://www.byrnelab.science/', label='The :blue[Byrne lab]')
     st.page_link('https://www.betegonlab.science/', label='The :blue[Betegon lab]')
