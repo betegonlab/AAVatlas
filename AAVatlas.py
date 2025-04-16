@@ -60,12 +60,6 @@ if selected == "By serotype":
 	st.subheader(serotype)
 	
 	
-	@st.cache_data
-	def load_data(data_path):
-		data = pd.read_csv(data_path)
-		return data
-	
-	
 	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP information", "Raw data"])
 
 # umap tab	
