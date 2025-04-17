@@ -123,6 +123,18 @@ if selected == "By serotype":
 	with tab_raw:
 		st.text("Single-cell sequencing data is available at NCBI GEO:")
 		st.link_button("Access raw data", "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEXXXXXX")
+
+# Immune response tab
+	with tab_immuno:
+		st.subheader("Immune response markers")
+		try:
+			st.image(atlas.dataPath+serotype+"/"+serotype+"_dotplot.jpg", width= 800)
+			st.text(' ')
+			st.image(atlas.dataPath+serotype+"/"+serotype+"_violin.jpg", width= 800)
+			st.text(' ')
+			st.image(atlas.dataPath+serotype+"/"+serotype+"_umap.jpg")
+		except:
+			st.text("No data found")
 		
 	
 if selected == "By cell type":

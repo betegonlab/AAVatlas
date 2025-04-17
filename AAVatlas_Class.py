@@ -45,11 +45,11 @@ class AAVatlas():
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
 
         celltypeFig = px.histogram(celltype_data, x="serotype", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12"],
-            text_auto='.2f',
+            text_auto='.0f',
             barmode='group',
             height=600,
             width=1200)
-        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName)
+        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName + ' at all titers')
         celltypeFig.update_layout(legend_title='AAV titer')
         celltypeFig.update_layout(legend_itemsizing='constant')
         celltypeFig.update_layout(xaxis_title="", yaxis_title="Number of cells infected")
