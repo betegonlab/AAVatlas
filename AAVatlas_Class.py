@@ -49,7 +49,7 @@ class AAVatlas():
             barmode='group',
             height=600,
             width=1200)
-        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName + ' at all titers')
+        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName + ' at increasing titers')
         celltypeFig.update_layout(legend_title='AAV titer')
         celltypeFig.update_layout(legend_itemsizing='constant')
         celltypeFig.update_layout(xaxis_title="", yaxis_title="Number of cells infected")
