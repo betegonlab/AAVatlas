@@ -65,7 +65,7 @@ class AAVatlas():
             umap_data = pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_umap.csv")
         except:
             return None
-		return None
+
         umapFig = px.scatter(
 			umap_data,
 			x='umap1',
