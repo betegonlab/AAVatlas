@@ -3,8 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-import kaleido
-kaleido.get_chrome()
+
 class AAVatlas():
 
     def __init__(self):
@@ -91,10 +90,10 @@ class AAVatlas():
         umapFig.update_layout(title=serotype + ' UMAP')
         umapFig.update_layout(legend_title='Cell type')
         umapFig.update_layout(legend_itemsizing='constant')
-        umapFig.update_layout(
-		    xaxis_range=umapFig.full_figure_for_development(warn=False).layout.xaxis.range,
-		    yaxis_range=umapFig.full_figure_for_development(warn=False).layout.yaxis.range,
-		)
+        #umapFig.update_layout(
+		#    xaxis_range=umapFig.full_figure_for_development(warn=False).layout.xaxis.range,
+		#    yaxis_range=umapFig.full_figure_for_development(warn=False).layout.yaxis.range,
+		#)
         umapFig.update_layout(plot_bgcolor='#ffffff')
         umapFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
         umapFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
