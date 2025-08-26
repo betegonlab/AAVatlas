@@ -64,7 +64,7 @@ class AAVatlas():
             umap_data = pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_umap.csv")
         except:
             return None
-        
+
         umapFig = px.scatter(
 			umap_data,
 			x='umap1',
@@ -84,20 +84,20 @@ class AAVatlas():
 		)
         umapFig.update_traces(marker_size=3)
         umapFig.update_traces(mode='markers')
-	
+
 		#umapFig.add_trace(umap_data['umap1'], umap_data['umap2'], umap_data['cells_with_BC2'].bool())
-	
+
         umapFig.update_layout(title=serotype + ' UMAP')
         umapFig.update_layout(legend_title='Cell type')
         umapFig.update_layout(legend_itemsizing='constant')
-        umapFig.update_layout(
-		    xaxis_range=umapFig.full_figure_for_development(warn=False).layout.xaxis.range,
-		    yaxis_range=umapFig.full_figure_for_development(warn=False).layout.yaxis.range,
-		)
+        #umapFig.update_layout(
+		#    xaxis_range=umapFig.full_figure_for_development(warn=False).layout.xaxis.range,
+		#    yaxis_range=umapFig.full_figure_for_development(warn=False).layout.yaxis.range,
+		#)
         umapFig.update_layout(plot_bgcolor='#ffffff')
         umapFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
         umapFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-		
+
         return umapFig
 
 
@@ -110,7 +110,7 @@ class AAVatlas():
         return pdf
 
     @st.cache_resource
-    def infectivityPlot(_self, serotype):        
+    def infectivityPlot(_self, serotype):
         dfs = {}
         infectivityFig = go.Figure()
         try:
@@ -134,5 +134,5 @@ class AAVatlas():
         infectivityFig.update_traces(mode='markers+lines')
         infectivityFig.update_traces(hovertemplate="<br>".join(["Cells sampled: %{x:,.2r}","Cells infected: %{y}"]))
         infectivityFig.update_traces(marker_size=8)
-	
+
         return infectivityFig
