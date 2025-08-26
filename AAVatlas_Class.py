@@ -3,8 +3,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-import kaleido
-kaleido.get_chrome_sync()
+#import kaleido
+#kaleido.get_chrome()
 class AAVatlas():
 
     def __init__(self):
