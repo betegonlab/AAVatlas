@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from streamlit_pdf_viewer import pdf_viewer
+import kaleido
+kaleido.get_chrome_sync()
 import AAVatlas_Class as aa
 
 st.set_page_config(layout="wide")
