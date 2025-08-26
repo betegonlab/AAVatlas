@@ -1,14 +1,8 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import plotly as px
 import plotly.graph_objects as go
 import os
-pio.kaleido.scope.chromium_args = (
-    "--headless",
-    "--no-sandbox",
-    "--single-process",
-    "--disable-gpu"
-)  # tuple with chromium args
 class AAVatlas():
 
     def __init__(self):
