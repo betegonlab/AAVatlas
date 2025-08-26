@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-
+kaleido.get_chrome()
 class AAVatlas():
 
     def __init__(self):
