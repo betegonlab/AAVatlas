@@ -42,9 +42,9 @@ with st.sidebar:
     st.page_link('https://www.byrnelab.science/', label='The :blue[Byrne lab]')
     st.page_link('https://www.betegonlab.science/', label='The :blue[Betegon lab]')
     st.image("Pitt_logo.png")
-    st.text(' ')
+
     st.text("and")
-    st.text(' ')
+
     st.image("AvistaTX.png")
     st.page_link('https://www.avistatx.com', label=':blue[Avista Therapeutics]')
 
