@@ -46,6 +46,7 @@ with st.sidebar:
     st.text("and")
 	st.text(' ')
 	st.image("AvistaTX.png")
+	st.page_link('https://www.avistatx.com', label='The :blue[Avista Therapeutics]')
 
 if selected == "By serotype":
 	st.subheader("AAV serotype")
