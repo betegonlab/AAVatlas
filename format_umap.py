@@ -33,6 +33,8 @@ for line in fh:
 		infected[celltype]['10'] = [float(e10)]
 		infected[celltype]['11'] = [float(e11)]
 		infected[celltype]['12'] = [float(e12)]
+		infected[celltype]['12'] = [float(e13)]
+		
 	else:
 		infected[celltype]['7'].append(float(e7))
 		infected[celltype]['8'].append(float(e8))
@@ -40,7 +42,8 @@ for line in fh:
 		infected[celltype]['10'].append(float(e10))
 		infected[celltype]['11'].append(float(e11))
 		infected[celltype]['12'].append(float(e12))
-
+		infected[celltype]['12'].append(float(e13))
+		
 	for celltype in infected:
 		fhOutCellTypes.write(serotype +','+ celltype +',')
 		for titer in bcs:
