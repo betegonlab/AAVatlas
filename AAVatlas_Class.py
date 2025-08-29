@@ -78,7 +78,8 @@ class AAVatlas():
 				"Cells infected at AAV titer 10^9": "black",
 				"Cells infected at AAV titer 10^10": "black",
 				"Cells infected at AAV titer 10^11": "black",
-				"Cells infected at AAV titer 10^12": "black"
+				"Cells infected at AAV titer 10^12": "black",
+				"Cells infected at AAV titer 10^13": "black"
 			},
 			hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
 		)
