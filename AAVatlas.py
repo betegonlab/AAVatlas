@@ -77,8 +77,6 @@ if selected == "By serotype":
 		if cellsPlot != None:
 			st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
 			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
-		else:
-			st.text("No data found")
 
 # Infectivity tab
 	with tab_infec:
