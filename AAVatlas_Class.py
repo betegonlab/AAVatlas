@@ -17,7 +17,7 @@ class AAVatlas():
         except:
             return None
 
-        cellsFig = px.histogram(cells_data, x="cell_type", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12", "10E13"],
+        cellsFig = px.histogram(cells_data, x="cell_type", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12"],
             barmode='group',
             height=600,
             width=1200,
