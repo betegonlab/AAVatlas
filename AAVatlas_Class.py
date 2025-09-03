@@ -116,7 +116,10 @@ class AAVatlas():
         infectivityFig = go.Figure()
         try:
             for i in range(13,6,-1):
-                dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=0, names=["Sampled_cells", "Infected"])
+                try:
+                    dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=0, names=["Sampled_cells", "Infected"])
+                except:
+                    continue
                 infectivityFig.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
         except:
             return None
