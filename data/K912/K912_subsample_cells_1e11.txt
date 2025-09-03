@@ -1,3 +1,4 @@
+Subsampled Cells,Cells Infected
 134217	52
 127153	50
 120089	47
