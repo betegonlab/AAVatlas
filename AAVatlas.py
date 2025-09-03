@@ -52,7 +52,7 @@ if selected == "By serotype":
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		serotype_selected = st.selectbox(
-		    "",
+		    "Select serotype",
 		    atlas.serotypes
 		)
 		serotype = serotype_selected
