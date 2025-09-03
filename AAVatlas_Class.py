@@ -17,7 +17,7 @@ class AAVatlas():
         except:
             return None
 
-        cellsFig = px.histogram(cells_data, x="cell_type", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12"],
+        cellsFig = px.histogram(cells_data, x="cell_type", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12", "10E13"],
             barmode='group',
             height=600,
             width=1200,
@@ -44,7 +44,7 @@ class AAVatlas():
         celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
 
-        celltypeFig = px.histogram(celltype_data, x="serotype", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12"],
+        celltypeFig = px.histogram(celltype_data, x="serotype", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12", "10E13"],
             text_auto='.0f',
             barmode='group',
             height=600,
@@ -115,7 +115,7 @@ class AAVatlas():
         dfs = {}
         infectivityFig = go.Figure()
         try:
-            for i in range(12,6,-1):
+            for i in range(13,6,-1):
                 dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter='\t', header=None, names=["Sampled_cells", "Infected"])
                 infectivityFig.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
         except:
