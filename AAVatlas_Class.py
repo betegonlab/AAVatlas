@@ -119,7 +119,6 @@ class AAVatlas():
                 try:
                     dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter=',', names=["Sampled_cells", "Infected"])
                     infectivityFig.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
-                    print(i)
                 except:
                     continue
 
