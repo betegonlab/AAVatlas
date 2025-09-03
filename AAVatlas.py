@@ -70,7 +70,7 @@ if selected == "By serotype":
 			st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
 			st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
 		else:
-			st.text("No data found")
+			st.text("Data available soon")
 
 		cellsPlot = atlas.cellsPlot(serotype)
 		if cellsPlot != None:
@@ -84,7 +84,7 @@ if selected == "By serotype":
 		if infectivityPlot != None:
 			st.plotly_chart(infectivityPlot, theme='streamlit', use_container_width=False)
 		else:
-			st.text("No data found")
+			st.text("Data available soon")
 
 # AAV QC tab
 	with tab_qc:
@@ -102,7 +102,7 @@ if selected == "By serotype":
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", width=1200)
 
 		except:
-			st.text("No data found")
+			st.text("Data available soon")
 
 
 # NHP info tab
@@ -121,7 +121,7 @@ if selected == "By serotype":
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", width=1200) #, height=800, width=1000)
 
 		except:
-			st.text("No data found")
+			st.text("Data available soon")
 
 # Data tab
 	with tab_raw:
@@ -138,7 +138,7 @@ if selected == "By serotype":
 			st.text(' ')
 			st.image(atlas.dataPath+serotype+"/"+serotype+"_umap.jpg")
 		except:
-			st.text("No data found")
+			st.text("Data available soon")
 
 
 if selected == "By cell type":
@@ -157,4 +157,4 @@ if selected == "By cell type":
 	if celltypePlot != None:
 		st.plotly_chart(celltypePlot, theme='streamlit', use_container_width=False)
 	else:
-		st.text("No data found")
+		st.text("Data available soon")
