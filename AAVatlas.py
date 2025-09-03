@@ -4,7 +4,6 @@ import numpy as np
 import plotly.express as px
 from streamlit_pdf_viewer import pdf_viewer
 import kaleido
-kaleido.get_chrome()
 import AAVatlas_Class as aa
 
 st.set_page_config(layout="wide")
@@ -29,7 +28,7 @@ st.markdown(
 with st.sidebar:
     st.sidebar.header("Pittsburgh AAV atlas")
     st.image("PAA_Logo.png")
-    selected = option_menu("", ["By serotype", 'By cell type'], 
+    selected = option_menu("", ["By serotype", 'By cell type'],
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
     st.text(' ')
@@ -57,13 +56,13 @@ if selected == "By serotype":
 		    atlas.serotypes
 		)
 		serotype = serotype_selected
-	
+
 	st.subheader(serotype)
-	
-	
+
+
 	tab_umap, tab_infec, tab_immuno, tab_qc, tab_imaging, tab_raw = st.tabs(["Infectivity UMAP", "Dose infectivity", "Immune response", "AAV QC", "NHP information", "Raw data"])
 
-# umap tab	
+# umap tab
 	with tab_umap:
 
 		umapPlot = atlas.umapPlot(serotype)
@@ -87,7 +86,7 @@ if selected == "By serotype":
 		else:
 			st.text("No data found")
 
-# AAV QC tab	
+# AAV QC tab
 	with tab_qc:
 
 		try:
@@ -101,10 +100,10 @@ if selected == "By serotype":
 			)
 			#st.link_button("Download "+serotype+" QC pdf", atlas.dataPath+serotype+"/"+serotype+"_qc.pdf")
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_qc.pdf", width=1200)
-			
+
 		except:
 			st.text("No data found")
-	
+
 
 # NHP info tab
 	with tab_imaging:
@@ -120,7 +119,7 @@ if selected == "By serotype":
 			)
 			#st.link_button("Download "+serotype+" imaging pdf", atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf")
 			pdf_viewer(atlas.dataPath+serotype+"/"+serotype+"_imaging.pdf", width=1200) #, height=800, width=1000)
-		
+
 		except:
 			st.text("No data found")
 
@@ -140,8 +139,8 @@ if selected == "By serotype":
 			st.image(atlas.dataPath+serotype+"/"+serotype+"_umap.jpg")
 		except:
 			st.text("No data found")
-		
-	
+
+
 if selected == "By cell type":
 	st.subheader("Cell type")
 	col1, col2, col3 = st.columns(3)
@@ -151,7 +150,7 @@ if selected == "By cell type":
 		    ("Rod","Cone","Retinal Ganglion Cell","Horizontal Cell","Microglia","Muller Glia","Off-Bipolar","On-Bipolar", "Retinal pigment epithelium", "Amacrine Cell")
 		)
 		celltype = celltype_selected
-	
+
 	st.subheader(celltype_selected)
 
 	celltypePlot = atlas.celltypePlot(celltype_selected)
@@ -159,4 +158,3 @@ if selected == "By cell type":
 		st.plotly_chart(celltypePlot, theme='streamlit', use_container_width=False)
 	else:
 		st.text("No data found")
-
