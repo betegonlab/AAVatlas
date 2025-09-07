@@ -22,7 +22,7 @@ class AAVatlas():
             height=600,
             width=1200,
             log_y=True)
-        cellsFig.update_layout(title='Normalized ' + serotype + ' cell type infectivity')
+        cellsFig.update_layout(title='Normalized ' + serotype + ' cell type infectivity, log scale')
         cellsFig.update_layout(legend_title='AAV titer')
         cellsFig.update_layout(legend_itemsizing='constant')
         cellsFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
@@ -53,7 +53,7 @@ class AAVatlas():
             width=1000,
             log_y=True)
 
-        celltypeFig.update_layout(title='Normalized AAV infectivity for ' + celltypeName + ' at increasing titers, log scale.')
+        celltypeFig.update_layout(title='Normalized AAV infectivity for ' + celltypeName + ' at increasing titers, log scale')
         celltypeFig.update_layout(legend_title='AAV titer')
         celltypeFig.update_layout(legend_itemsizing='constant')
         celltypeFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
