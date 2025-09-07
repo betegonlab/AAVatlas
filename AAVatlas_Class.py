@@ -45,7 +45,7 @@ class AAVatlas():
         celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
 
-        celltypeFig = px.histogram(celltype_data, x="serotype", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12", "10E13"],
+        celltypeFig = px.histogram(celltype_data, x="serotype", y='normalized_cells_cpm',
             text_auto='.0f',
             barmode='group',
             height=600,
