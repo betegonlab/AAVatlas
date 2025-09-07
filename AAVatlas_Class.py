@@ -30,34 +30,7 @@ class AAVatlas():
         cellsFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
 
         return cellsFig
-"""
-    @st.cache_resource
-    def celltypePlotOld(_self, celltypeName):
-        availableSerotypes = []
-        for serotype in _self.serotypes:
-            if os.path.exists(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv"):
-                availableSerotypes.append(serotype)
 
-        if availableSerotypes == []:
-            return None
-
-        celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
-        celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
-
-        celltypeFig = px.histogram(celltype_data, x="serotype", y=["10E7", "10E8", "10E9", "10E10", "10E11", "10E12", "10E13"],
-            text_auto='.0f',
-            barmode='group',
-            height=600,
-            width=1200)
-        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName + ' at increasing titers')
-        celltypeFig.update_layout(legend_title='AAV titer')
-        celltypeFig.update_layout(legend_itemsizing='constant')
-        celltypeFig.update_layout(xaxis_title="", yaxis_title="Number of cells infected")
-        celltypeFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-        celltypeFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
-
-        return celltypeFif
-"""
 
     @st.cache_resource
     def celltypePlot(_self, celltypeName):
