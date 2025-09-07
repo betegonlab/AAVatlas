@@ -8,7 +8,7 @@ class AAVatlas():
 
     def __init__(self):
         self.dataPath = 'data/'
-        self.serotypes = files_dir = [f for f in os.listdir(self.dataPath) if os.path.isdir(os.path.join(self.dataPath, f))]
+        self.serotypes = sorted([f for f in os.listdir(self.dataPath) if os.path.isdir(os.path.join(self.dataPath, f))])
 
     @st.cache_resource
     def cellsPlot(_self, serotype):
@@ -17,21 +17,22 @@ class AAVatlas():
         except:
             return None
 
-        cellsFig = px.histogram(cells_data, x="cell_type", y='normalized_cells_cpm',
+        cellsFig = px.histogram(cells_data, x="cell_type", y=['e7','e8','e9','e10','e11','e12','e13'],
             barmode='group',
             height=600,
             width=1200,
             log_y=True)
-        cellsFig.update_layout(title=serotype + ' cell type infectivity')
+        cellsFig.update_layout(title='Normalized ' + serotype + ' cell type infectivity')
         cellsFig.update_layout(legend_title='AAV titer')
         cellsFig.update_layout(legend_itemsizing='constant')
-        cellsFig.update_layout(xaxis_title="", yaxis_title="Number of cells infected")
+        cellsFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
         cellsFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
         cellsFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
 
         return cellsFig
 
 
+    # Return plot for "By cell type"
     @st.cache_resource
     def celltypePlot(_self, celltypeName):
         availableSerotypes = []
@@ -45,15 +46,17 @@ class AAVatlas():
         celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
 
-        celltypeFig = px.histogram(celltype_data, x="serotype", y='normalized_cells_cpm',
+        celltypeFig = px.histogram(celltype_data, x="serotype", y=['e7','e8','e9','e10','e11','e12','e13'],
             text_auto='.0f',
             barmode='group',
-            height=600,
-            width=1200)
-        celltypeFig.update_layout(title='AAV infectivity for ' + celltypeName + ' at increasing titers')
+            height=500,
+            width=1000,
+            log_y=True)
+
+        celltypeFig.update_layout(title='Normalized AAV infectivity for ' + celltypeName + ' at increasing titers, log scale.')
         celltypeFig.update_layout(legend_title='AAV titer')
         celltypeFig.update_layout(legend_itemsizing='constant')
-        celltypeFig.update_layout(xaxis_title="", yaxis_title="Number of cells infected")
+        celltypeFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
         celltypeFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
         celltypeFig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
 

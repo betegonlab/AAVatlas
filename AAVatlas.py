@@ -147,7 +147,7 @@ if selected == "By cell type":
 	with col1:
 		celltype_selected = st.selectbox(
 		    '',
-		    ("Rod","Cone","Retinal Ganglion Cell","Horizontal Cell","Microglia","Muller Glia","Off-Bipolar","On-Bipolar", "Retinal pigment epithelium", "Amacrine Cell")
+		    ("Rod","Cone","Retinal Ganglion Cell","Off-Bipolar","On-Bipolar","Horizontal Cell","Microglia","Muller Glia","Glia","Microglia","Amacrine Cell","Pericyte")
 		)
 		celltype = celltype_selected
 
