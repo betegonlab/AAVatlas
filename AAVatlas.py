@@ -152,7 +152,7 @@ if selected == "By cell type":
 		celltype = celltype_selected
 
 	st.subheader(celltype_selected)
-	st.text("Only serotypes for which infected cells were detected are shown")
+	st.text("Only serotypes for which infected cells were detected are shown.")
 
 	celltypePlot = atlas.celltypePlot(celltype_selected)
 	if celltypePlot != None:

@@ -16,12 +16,15 @@ class AAVatlas():
             cells_data = pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv")
         except:
             return None
-
-        cellsFig = px.histogram(cells_data, x="cell_type", y=['e7','e8','e9','e10','e11','e12','e13'],
+        # Drop columns that contain all 0s
+        cells_data = cells_data.loc[:, cells_data.any()]
+        cellsFig = px.bar(cells_data, x="cell_type", y=cells_data.columns[2:], #['e7','e8','e9','e10','e11','e12','e13'],
             barmode='group',
             height=600,
             width=1200,
-            log_y=True)
+            log_y=True,
+            hover_data={'variable':True, 'cell_type':False, 'Cell type':cells_data['cell_type']}
+        )
         cellsFig.update_layout(title='Normalized ' + serotype + ' cell type infectivity, log scale')
         cellsFig.update_layout(legend_title='AAV titer')
         cellsFig.update_layout(legend_itemsizing='constant')
@@ -45,8 +48,10 @@ class AAVatlas():
 
         celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
+        # Drop columns that contain all 0s
+        celltype_data = celltype_data.loc[:, celltype_data.any()]
 
-        celltypeFig = px.histogram(celltype_data, x="serotype", y=['e7','e8','e9','e10','e11','e12','e13'],
+        celltypeFig = px.bar(celltype_data, x="serotype", y=celltype_data.columns[2:],
             text_auto='.0f',
             barmode='group',
             height=500,
