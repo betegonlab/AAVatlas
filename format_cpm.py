@@ -4,8 +4,11 @@ import sys
 titers = ['e7','e8','e9','e10','e11','e12','e13']
 
 fileIn = sys.argv[1]
+if fileIn[-5:] != '.orig':
+    print("Input file must have .orig extension")
+    exit()
 fh = open(fileIn)
-fileOut = fileIn[:-4]+"_formatted.csv"
+fileOut = fileIn[:-5]
 print(fileOut)
 
 fhOut = open(fileOut, "w")
