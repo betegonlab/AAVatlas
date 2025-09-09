@@ -8,7 +8,7 @@ import AAVatlas_Class as aa
 
 st.set_page_config(layout="wide")
 st.set_page_config(page_title="PGH AAVatlas")
-
+st.logo("PAA_Logo.png")
 serotype = "K912"
 
 atlas = aa.AAVatlas()
@@ -28,7 +28,7 @@ st.markdown(
 
 with st.sidebar:
     st.sidebar.header("Pittsburgh AAV atlas")
-    st.image("PAA_Logo.png")
+    
     selected = option_menu("", ["By serotype", 'By cell type'],
         icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
