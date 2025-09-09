@@ -9,6 +9,25 @@ import AAVatlas_Class as aa
 st.set_page_config(layout="wide")
 st.set_page_config(page_title="PGH AAVatlas", page_icon="favicon.ico", menu_items=None)
 
+st.markdown(
+    """
+        <style>
+                .stAppHeader {
+                    background-color: rgba(255, 255, 255, 0.0);  /* Transparent background */
+                    visibility: visible;  /* Ensure the header is visible */
+                }
+
+               .block-container {
+                    padding-top: 1rem;
+                    padding-bottom: 0rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+        </style>
+        """,
+    unsafe_allow_html=True,
+)
+
 serotype = "K912"
 
 atlas = aa.AAVatlas()
@@ -27,7 +46,7 @@ st.markdown(
 )
 
 with st.sidebar:
-	st.image("PAA_Logo.png")
+    st.image("PAA_Logo.png")
     st.sidebar.header("Pittsburgh AAV atlas")
     
     selected = option_menu("", ["By serotype", 'By cell type'],
