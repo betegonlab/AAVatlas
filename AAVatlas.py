@@ -35,24 +35,23 @@ atlas = aa.AAVatlas()
 from streamlit_option_menu import option_menu
 
 st.markdown(
-	"""
-	<style>
-		section[data-testid="stSidebar"] {
-			width: 250px !important; # Set the width to your desired value
-		}
-	</style>
-	""",
-	unsafe_allow_html=True,
+    """
+    <style>
+    section[data-testid="stSidebar"] {
+        width: 250px !important; # Set the width to your desired value
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
 with st.sidebar:
-	st.image("PAA_Logo.png")
-	st.sidebar.header("Pittsburgh AAV atlas")
+    st.image("PAA_Logo.png")
+    st.sidebar.header("Pittsburgh AAV atlas")
 
-	selected = option_menu("", ["By serotype", 'By cell type'],
-		icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
+    selected = option_menu("", ["By serotype", 'By cell type'], icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
-	st.text(' ')
+    st.text(' ')
 
     st.text("Funded by:")
     st.image("FNIH_logo.svg")
