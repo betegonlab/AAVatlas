@@ -7,7 +7,7 @@ import kaleido
 import AAVatlas_Class as aa
 
 st.set_page_config(layout="wide")
-st.set_page_config(page_title="PGH AAVatlas")
+st.set_page_config(page_title="PGH AAVatlas", page_icon="favicon.ico")
 st.logo("PAA_Logo.png")
 serotype = "K912"
 
