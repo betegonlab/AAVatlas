@@ -18,11 +18,14 @@ st.markdown(
                 }
 
                .block-container {
-                    padding-top: 1rem;
+                    padding-top: 0rem;
                     padding-bottom: 0rem;
                     padding-left: 5rem;
                     padding-right: 5rem;
                 }
+                .stSidebar, .stAppViewBlockContainer {
+                     padding-top: 0;
+                 }
         </style>
         """,
     unsafe_allow_html=True,
@@ -47,7 +50,7 @@ st.markdown(
 
 with st.sidebar:
     st.image("PAA_Logo.png")
-    st.sidebar.header("Pittsburgh AAV atlas")
+    st.sidebar.subheader("Pittsburgh AAV atlas")
 
     selected = option_menu("", ["By serotype", 'By cell type'], icons=['virus', 'vignette'], menu_icon="cast", default_index=0)
 
@@ -172,7 +175,7 @@ if selected == "By cell type":
 		celltype = celltype_selected
 
 	st.subheader(celltype_selected)
-	st.text("Only serotypes and titers for which infected cells were detected are shown.")
+	st.text("Only serotypes for which infected cells were detected are shown.")
 
 	celltypePlot = atlas.celltypePlot(celltype_selected)
 	if celltypePlot != None:

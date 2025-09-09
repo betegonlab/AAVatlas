@@ -17,7 +17,7 @@ class AAVatlas():
         except:
             return None
         # Drop columns that contain all 0s
-        cells_data = cells_data.loc[:, cells_data.any()]
+        #cells_data = cells_data.loc[:, cells_data.any()]
         cellsFig = px.bar(cells_data, x="cell_type", y=cells_data.columns[2:], #['e7','e8','e9','e10','e11','e12','e13'],
             barmode='group',
             height=600,
@@ -49,7 +49,7 @@ class AAVatlas():
         celltype_data = pd.concat((pd.read_csv(_self.dataPath+serotype+"/"+serotype+"_infected_cells.csv") for serotype in availableSerotypes), ignore_index=True)
         celltype_data = celltype_data.loc[celltype_data['cell_type'] == celltypeName]
         # Drop columns that contain all 0s
-        celltype_data = celltype_data.loc[:, celltype_data.any()]
+        #celltype_data = celltype_data.loc[:, celltype_data.any()]
 
         celltypeFig = px.bar(celltype_data, x="serotype", y=celltype_data.columns[2:],
             text_auto='.0f',
