@@ -97,7 +97,8 @@ if selected == "By serotype":
 
 		cellsPlot = atlas.cellsPlot(serotype)
 		if cellsPlot != None:
-			st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
+			with st.spinner("Loading...", show_time=True):
+				st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
 			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
 
 # Infectivity tab
