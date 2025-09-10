@@ -87,7 +87,7 @@ if selected == "By serotype":
 
 # umap tab
 	with tab_umap:
-		with st.spinner("Loading...", show_time=True):
+		with st.spinner("Loading UMAP...", show_time=False):
 			umapPlot = atlas.umapPlot(serotype)
 			if umapPlot != None:
 				st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
