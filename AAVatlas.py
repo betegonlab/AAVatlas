@@ -87,19 +87,18 @@ if selected == "By serotype":
 
 # umap tab
 	with tab_umap:
-
-		umapPlot = atlas.umapPlot(serotype)
-		if umapPlot != None:
-			st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
-			st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
-		else:
-			st.text("Data available soon")
-
-		cellsPlot = atlas.cellsPlot(serotype)
-		if cellsPlot != None:
-			with st.spinner("Loading...", show_time=True):
+		with st.spinner("Loading...", show_time=True):
+			umapPlot = atlas.umapPlot(serotype)
+			if umapPlot != None:
+				st.text("Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all.")
+				st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
+			else:
+				st.text("Data available soon")
+	
+			cellsPlot = atlas.cellsPlot(serotype)
+			if cellsPlot != None:
 				st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
-			#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
+				#st.text("(Click on a cell type name to show/hide. Double-click on a cell type name to show only that cell type/show all)")
 
 # Infectivity tab
 	with tab_infec:
