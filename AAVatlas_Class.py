@@ -82,13 +82,13 @@ class AAVatlas():
 			width=1200,
 			height=700,
 			color_discrete_map={
-				"Cells infected at AAV titer 10^7": "black",
-				"Cells infected at AAV titer 10^8": "black",
-				"Cells infected at AAV titer 10^9": "black",
-				"Cells infected at AAV titer 10^10": "black",
-				"Cells infected at AAV titer 10^11": "black",
-				"Cells infected at AAV titer 10^12": "black",
-				"Cells infected at AAV titer 10^13": "black"
+				"Cells infected at AAV titer 3E5": "black",
+				"Cells infected at AAV titer 3E6": "black",
+				"Cells infected at AAV titer 3E7": "black",
+				"Cells infected at AAV titer 3E8": "black",
+				"Cells infected at AAV titer 3E9": "black",
+				"Cells infected at AAV titer 3E10": "black",
+				"Cells infected at AAV titer 3E11": "black"
 			},
 			hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
 		)
@@ -126,8 +126,8 @@ class AAVatlas():
         try:
             for i in range(13,6,-1):
                 try:
-                    dfs['1E'+str(i)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter=',', names=["Sampled_cells", "Infected"])
-                    infectivityFig.add_trace(go.Scatter(x=dfs['1E'+str(i)]["Sampled_cells"], y=dfs['1E'+str(i)]["Infected"], name='1E'+str(i)))
+                    dfs['3E'+str(i-2)] = pd.read_csv(_self.dataPath+serotype+"/"+serotype+'_subsample_cells_1e'+str(i)+'.txt', delimiter=',', names=["Sampled_cells", "Infected"])
+                    infectivityFig.add_trace(go.Scatter(x=dfs['3E'+str(i-2)]["Sampled_cells"], y=dfs['3E'+str(i-2)]["Infected"], name='3E'+str(i-2)))
                 except:
                     continue
 
