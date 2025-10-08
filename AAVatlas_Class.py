@@ -26,7 +26,7 @@ class AAVatlas():
             hover_data={'variable':True, 'cell_type':False, 'Cell type':cells_data['cell_type']}
         )
         cellsFig.update_layout(title='Normalized ' + serotype + ' cell type infectivity, log scale')
-        cellsFig.update_layout(legend_title='AAV titer')
+        cellsFig.update_layout(legend_title='AAV dose (vg)')
         cellsFig.update_layout(legend_itemsizing='constant')
         cellsFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
         cellsFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
@@ -58,8 +58,8 @@ class AAVatlas():
             width=1000,
             log_y=True)
 
-        celltypeFig.update_layout(title='Normalized AAV infectivity for ' + celltypeName + ' at increasing titers, log scale')
-        celltypeFig.update_layout(legend_title='AAV titer')
+        celltypeFig.update_layout(title='Normalized AAV infectivity for ' + celltypeName + ' at increasing doses, log scale')
+        celltypeFig.update_layout(legend_title='AAV dose (vg)')
         celltypeFig.update_layout(legend_itemsizing='constant')
         celltypeFig.update_layout(xaxis_title="", yaxis_title="Normalized number of cells infected")
         celltypeFig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
@@ -82,13 +82,13 @@ class AAVatlas():
 			width=1200,
 			height=700,
 			color_discrete_map={
-				"Cells infected at AAV titer 3E5": "black",
-				"Cells infected at AAV titer 3E6": "black",
-				"Cells infected at AAV titer 3E7": "black",
-				"Cells infected at AAV titer 3E8": "black",
-				"Cells infected at AAV titer 3E9": "black",
-				"Cells infected at AAV titer 3E10": "black",
-				"Cells infected at AAV titer 3E11": "black"
+				"Cells infected at AAV dose 3E5 vg": "black",
+				"Cells infected at AAV dose 3E6 vg": "black",
+				"Cells infected at AAV dose 3E7 vg": "black",
+				"Cells infected at AAV dose 3E8 vg": "black",
+				"Cells infected at AAV dose 3E9 vg": "black",
+				"Cells infected at AAV dose 3E10 vg": "black",
+				"Cells infected at AAV dose 3E11 vg": "black"
 			},
 			hover_data={'umap1':False, 'umap2':False, 'cell_type':False, 'Cell type':umap_data['cell_type']}
 		)
@@ -138,7 +138,7 @@ class AAVatlas():
 		    title=serotype + " infectivity",
 		    xaxis_title="Number of cells sampled",
 		    yaxis_title="Number of cells infected",
-		    legend_title="AAV titer",
+		    legend_title="AAV dose (vg)",
 		    width=1000,
 		    height=650
 		)

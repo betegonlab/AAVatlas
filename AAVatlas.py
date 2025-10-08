@@ -94,7 +94,7 @@ if selected == "By serotype":
 				st.plotly_chart(umapPlot, theme='streamlit', use_container_width=False)
 			else:
 				st.text("Data available soon")
-	
+
 			cellsPlot = atlas.cellsPlot(serotype)
 			if cellsPlot != None:
 				st.plotly_chart(cellsPlot, theme='streamlit', use_container_width=False)
@@ -169,7 +169,7 @@ if selected == "By cell type":
 	col1, col2, col3 = st.columns(3)
 	with col1:
 		celltype_selected = st.selectbox(
-		    '',
+		    "Select cell type:",
 		    ("Rod","Cone","Retinal Ganglion Cell","Off-Bipolar","On-Bipolar","Horizontal Cell","Microglia","Muller Glia","Glia","Microglia","Amacrine Cell","Pericyte")
 		)
 		celltype = celltype_selected
