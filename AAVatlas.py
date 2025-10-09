@@ -5,6 +5,9 @@ import plotly.express as px
 from streamlit_pdf_viewer import pdf_viewer
 import kaleido
 import AAVatlas_Class as aa
+import hmac
+import os
+
 
 st.set_page_config(layout="wide")
 st.set_page_config(page_title="PGH AAVatlas", page_icon="favicon.ico", menu_items=None)
@@ -30,6 +33,30 @@ st.markdown(
         """,
     unsafe_allow_html=True,
 )
+
+def check_password():
+    """Returns `True` if the user had the correct password."""
+    def password_entered():
+        # If you use .streamlit/secrets.toml, replace os.environ.get with st.secrets["STREAMLIT_PASSWORD"]
+        if hmac.compare_digest(st.session_state["password"], os.environ.get("aavatlas_auth")):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    #st.info(f"Password: {password}")
+    # Show input for password.
+    st.text_input(
+        "Please enter password for access:", type="password", on_change=password_entered, key="password"
+    )
+    if "password_correct" in st.session_state:
+        st.error("Password incorrect")
+    return False
+
 
 serotype = "K912"
 
@@ -69,6 +96,9 @@ with st.sidebar:
 
     st.image("AvistaTX.png")
     st.page_link('https://www.avistatx.com', label=':blue[Avista Therapeutics]')
+
+if not check_password():
+    st.stop()
 
 if selected == "By serotype":
 	st.subheader("AAV serotype")
