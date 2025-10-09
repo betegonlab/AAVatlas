@@ -38,7 +38,7 @@ def check_password():
     """Returns `True` if the user had the correct password."""
     def password_entered():
         # If you use .streamlit/secrets.toml, replace os.environ.get with st.secrets["STREAMLIT_PASSWORD"]
-        if hmac.compare_digest(st.session_state["password"], os.environ.get("aavatlas_auth")):
+        if hmac.compare_digest(st.session_state["password"], os.environ.get("AAVATLASAUTH")):
             st.session_state["password_correct"] = True
             del st.session_state["password"]
         else:
